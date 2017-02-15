@@ -6,7 +6,10 @@ cout << "Введите срок вклада:";
 cin >> srok;
 cout << "Введите сумму вклада:";
 cin >> summ;
-if (srok <= 30){
+if (srok <= 0){
+	cout << "Неправильная дата";
+}
+if ((srok <= 30) && (srok > 0)){
 	if(summ <= 100000){
 		proc = summ*0.9;
 	} else 
@@ -14,7 +17,7 @@ if (srok <= 30){
 		proc = summ*0.9;
 	}
 }
-if (srok > 31 && srok <120){
+if ((srok >= 31) && (srok <=120)){
 	if(summ <= 100000){
 		proc = summ*1.02;
 	} else 
@@ -22,7 +25,7 @@ if (srok > 31 && srok <120){
 		proc = summ*1.03;
 	}
 }
-if (srok >121 && srok < 240){
+if ((srok >=121) && (srok <=240)){
 	if(summ <= 100000){
 		proc = summ*1.06;
 	} else 
@@ -30,13 +33,16 @@ if (srok >121 && srok < 240){
 		proc = summ*1.08;
 	}
 }
-if (srok > 240 && srok <365){
+if ((srok >= 241) && (srok <=365)){
 	if(summ <= 100000){
 		proc = summ*1.12;
 	} else 
 	if(summ >100000){
 		proc = summ*1.15;
 	}
+}
+if (srok > 365){
+	cout << "Срок вклада более 365 дней";
 }
 cout << "Начисленные проценты" << proc;
 }
