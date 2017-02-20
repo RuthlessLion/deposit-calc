@@ -2,14 +2,21 @@
 using namespace std;
 int main (){
 int  srok,summ,proc,procend;
-cout << "Введите срок вклада:";
+for (;;){
+cout << endl; << "Введите срок вклада:"<<endl;
 cin >> srok;
-cout << "Введите сумму вклада:";
-cin >> summ;
-if (srok <= 0){
-	cout << "Неправильная дата";
+if (srok <= 0 || srok >365){
+	cout << "Введён неправильный срок вклада"<<endl;
+	break;
 }
-if ((srok <= 30) && (srok > 0)){
+cout << "Введите сумму вклада:"<<endl;
+cin >> summ;
+if (summ <=0){
+	cout << "Введёна неправильная сумма вклад"<<endl;
+	break;
+}
+if (srok > 0 && summ > 0){
+	if ((srok <= 30) && (srok > 0)){
 	if(summ <= 100000){
 		proc = summ*0.9;
 	} else 
@@ -41,8 +48,8 @@ if ((srok >= 241) && (srok <=365)){
 		proc = summ*1.15;
 	}
 }
-if (srok > 365){
-	cout << "Срок вклада более 365 дней";
+cout << endl << "Срок вклада: " << srok<<endl;
+cout << "Начисленные проценты: " << proc<<endl;
 }
-cout << "Начисленные проценты" << proc;
+}
 }
