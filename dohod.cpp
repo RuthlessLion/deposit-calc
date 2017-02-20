@@ -3,7 +3,7 @@ using namespace std;
 int main (){
 int  srok,summ,proc,procend;
 for (;;){
-cout << endl; << "Введите срок вклада:"<<endl;
+cout << endl << "Введите срок вклада:" << endl;
 cin >> srok;
 if (srok <= 0 || srok >365){
 	cout << "Введён неправильный срок вклада"<<endl;
@@ -11,7 +11,7 @@ if (srok <= 0 || srok >365){
 }
 cout << "Введите сумму вклада:"<<endl;
 cin >> summ;
-if (summ <=0){
+if (summ <= 10000){
 	cout << "Введёна неправильная сумма вклад"<<endl;
 	break;
 }
