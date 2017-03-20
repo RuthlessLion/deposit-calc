@@ -1,8 +1,10 @@
-#include <iostream>
+#ifndef DEPOSIT_C
+#define DEPOSIT_C
+
 using namespace std;
-int main (){
-int  srok,summ,proc;
-for (;;){
+
+int checking(int &srok,int &summ,int &proc){
+	for (int i = 0;i != 1;){
 cout << endl << "Введите срок вклада:" << endl;
 cin >> srok;
 if (srok <= 0 || srok >365){
@@ -48,8 +50,11 @@ if ((srok >= 241) && (srok <=365)){
 		proc = summ*1.15;
 	}
 }
-cout << endl << "Срок вклада: " << srok<<endl;
-cout << "Начисленные проценты: " << proc<<endl;
 }
+i++;
 }
+return 0;
 }
+
+
+#endif /*DEPOSIT_C*/

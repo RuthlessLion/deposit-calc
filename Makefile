@@ -1,2 +1,2 @@
 all:
-	g++ dohod.cpp -Wall -o hello
+	g++ src/main.cpp -Wall -Werror -o hello
