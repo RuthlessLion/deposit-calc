@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main (){
-int  srok,summ,proc,procend;
+int  srok,summ,proc;
 for (;;){
 cout << endl << "Введите срок вклада:" << endl;
 cin >> srok;
