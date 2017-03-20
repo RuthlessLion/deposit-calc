@@ -1,5 +1,6 @@
 #ifndef DEPOSIT_C
 #define DEPOSIT_C
+#include <iostream>
 
 using namespace std;
 

@@ -1,2 +1,2 @@
 all:
-	g++ src/main.cpp -Wall -Werror -o hello
+	g++ src/main.cpp -Wall -Werror -o build/main
