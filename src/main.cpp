@@ -1,6 +1,5 @@
 #include <iostream>
 #include "deposit.h"
-#include "deposit.c"
 
 using namespace std;
 
