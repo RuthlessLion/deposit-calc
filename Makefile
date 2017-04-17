@@ -13,11 +13,11 @@ all:
 clean:
 	rm -rf build/deposit.o
 %.o: %.c thirdparty/ctest.h
-	gcc -Wall -Werror -c -o $@ $<
+	g++ -Wall -Werror -c -o $@ $<
 
 testbuild: test/main.c test/deposit_test.c
-	gcc $(CCFLAGS) test/main.c -c
+	g++ $(CCFLAGS) test/main.c -c
 	g++ $(CCFLAGS) test/deposit_test.c -c
 
 test: main.o thirdparty/ctest.h deposit_test.o
-	gcc $(CCFLAGS) main.o deposit_test.o -o test
+	g++ $(CCFLAGS) main.o deposit_test.o -o test
