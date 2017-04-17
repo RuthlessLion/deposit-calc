@@ -1,10 +1,23 @@
+UNAME=$(shell uname)
+
+CCFLAGS=-Wall -Wextra -Wno-unused-parameter -O3
+CC=gcc
+
+ifeq ($(UNAME), Darwin)
+LDFLAGS=-Wl,-flat_namespace,-undefined,dynamic_lookup
+endif
+
 all:
-	g++ -Wall -Werror -c src/deposit.c
-	mv deposit.o build
-	g++ src/main.cpp build/deposit.o -Wall -Werror -o bin/main
+	g++ src/main.cpp -Wall -Werror -o bin/main
+
 clean:
 	rm -rf build/deposit.o
-test:
-	g++ -Wall -Werror -c test/main.cpp
-	mv main.o test/duild
-	g++ -I thirdparty src -c test/deposit_test.c -o test/build/deposit_test.o
+%.o: %.c thirdparty/ctest.h
+	gcc -Wall -Werror -c -o $@ $<
+
+testbuild: test/main.c test/deposit_test.c
+	gcc $(CCFLAGS) test/main.c -c
+	g++ $(CCFLAGS) test/deposit_test.c -c
+
+test: main.o thirdparty/ctest.h deposit_test.o
+	gcc $(CCFLAGS) main.o deposit_test.o -o test

@@ -1,61 +1,50 @@
 #ifndef DEPOSIT_C
 #define DEPOSIT_C
-#include <iostream>
 
+#include <iostream>
+#include <cmath>
+#include <stdio.h>
 using namespace std;
 
-int checking(int &srok,int &summ,int &proc){
-	for (int i = 0;i != 1;){
-cout << endl << "Введите срок вклада:" << endl;
-cin >> srok;
-if (srok <= 0 || srok >365){
-	cout << "Введён неправильный срок вклада"<<endl;
-	break;
-}
-cout << "Введите сумму вклада:"<<endl;
-cin >> summ;
-if (summ <= 10000){
-	cout << "Введёна неправильная сумма вклад"<<endl;
-	break;
-}
-if (srok > 0 && summ > 0){
-	if ((srok <= 30) && (srok > 0)){
-	if(summ <= 100000){
-		proc = summ*0.9;
-	} else 
-	if(summ >100000){
-		proc = summ*0.9;
-	}
-}
-if ((srok >= 31) && (srok <=120)){
-	if(summ <= 100000){
-		proc = summ*1.02;
-	} else 
-	if(summ >100000){
-		proc = summ*1.03;
-	}
-}
-if ((srok >=121) && (srok <=240)){
-	if(summ <= 100000){
-		proc = summ*1.06;
-	} else 
-	if(summ >100000){
-		proc = summ*1.08;
-	}
-}
-if ((srok >= 241) && (srok <=365)){
-	if(summ <= 100000){
-		proc = summ*1.12;
-	} else 
-	if(summ >100000){
-		proc = summ*1.15;
-	}
-}
-}
-i++;
-}
-return 0;
+int one(int &d, int ye);
+int two(int &d, int ye);
+int three(int &d, int ye);
+int four(int &d, int ye);
+
+int one(int &d, int ye){
+	double s=ye;
+	s=s/100*90;
+	return s;
 }
 
+int two(int &d, int ye){
+	int s=ye;
+	double p;
+	if (d==1)p = 0.02;
+	if (d==2)p = 0.03;
+	s=s+s*p;
+	return s;
+}
+
+int three(int &d, int ye){
+	int s=ye;
+	cout << d<< endl;
+	double p;
+	if (d==1)p = 0.06;
+	if (d==2)p = 0.08;
+	s=s+s*p;
+	return s;
+
+}
+
+int four(int &d, int ye){
+	int s=ye;
+	double p;
+	if (d==1)p = 0.12;
+	if (d==2)p = 0.15;
+	s=s+s*p;
+	return s;
+
+}
 
 #endif /*DEPOSIT_C*/
