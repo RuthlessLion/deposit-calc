@@ -1,4 +1,10 @@
-$ cat .gitignore
-*.[oa]
-!git.o
-*~
+/bin/*deposit-calc
+/build/*.o
+*.o
+*.bin
+*.pdf
+*.zip
+*.log
+*.xls
+*.doc
+*.mp4

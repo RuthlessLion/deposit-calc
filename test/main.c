@@ -1,22 +1,9 @@
-#include <stdio.h>
-
 #define CTEST_MAIN
+#define CTEST_COLOR_OK
 
-// uncomment lines below to enable/disable features. See README.md for details
-#define CTEST_SEGFAULT
-//#define CTEST_NO_COLORS
-//#define CTEST_COLOR_OK
+#include <ctest.h>
 
-#include "ctest.h"
-
-CTEST(arithmetic_suite, simle_sum);
-
-int main(int argc, const char *argv[])
+int main(int argc, const char** argv)
 {
-    int result = ctest_main(argc, argv);
-
-    printf("\nNOTE: some tests will fail, just to show how ctest works! ;)\n");
-    return result;
-
+    return ctest_main(argc, argv);
 }
-

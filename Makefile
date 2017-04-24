@@ -1,23 +1,35 @@
-UNAME=$(shell uname)
+CC := gcc
+CFLAGS := -c -Wall -Werror
+LFLAGS := -I thirdparty -I src -c 
+EXE := bin/deposit-calc
+EXE_TEST := bin/deposit-calc-test
 
-CCFLAGS=-Wall -Wextra -Wno-unused-parameter -O3
-CC=gcc
+all: $(EXE) $(EXE_TEST)
 
-ifeq ($(UNAME), Darwin)
-LDFLAGS=-Wl,-flat_namespace,-undefined,dynamic_lookup
-endif
+$(EXE): build/src/main.o build/src/deposit.o
+		$(CC) build/src/main.o build/src/deposit.o -o $@
 
-all:
-	g++ src/main.cpp -Wall -Werror -o bin/main
+build/src/main.o: src/main.c src/deposit.h
+		$(CC) $(CFLAGS) src/main.c -o $@   
 
-clean:
-	rm -rf build/deposit.o
-%.o: %.c thirdparty/ctest.h
-	g++ -Wall -Werror -c -o $@ $<
+build/src/deposit.o: src/deposit.c 
+		$(CC) $(CFLAGS) src/deposit.c -o $@ 
 
-testbuild: test/main.c test/deposit_test.c
-	g++ $(CCFLAGS) test/main.c -c
-	g++ $(CCFLAGS) test/deposit_test.c -c
+$(EXE_TEST): build/test/deposit_test.o build/test/validation_test.o build/test/main.o build/src/deposit.o
+		$(CC) build/test/deposit_test.o build/test/validation_test.o build/test/main.o build/src/deposit.o -o $@
 
-test: main.o thirdparty/ctest.h deposit_test.o
-	g++ $(CCFLAGS) main.o deposit_test.o -o test
+build/test/deposit_test.o: test/deposit_test.c       
+		$(CC) $(LFLAGS) test/deposit_test.c -o $@   
+
+build/test/validation_test.o: test/validation_test.c   
+		$(CC) $(LFLAGS) test/validation_test.c -o $@
+
+build/test/main.o: test/main.c 
+		$(CC) -I thirdparty -c test/main.c -o $@
+
+.PHONY: all clean
+
+clean:	
+		rm -rf build/src/*.o
+		rm -rf build/test/*.o
+		rm -rf bin/*

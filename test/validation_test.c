@@ -1,20 +1,72 @@
-#include <iostream>
-#include <stdlib.h>
+#include <deposit.h>
+#include <ctest.h>
 
-#include "../thirdparty/ctest.h"
-
-CTEST(main1, main1_test)
+CTEST(logic_suite, corect_wrong)
 {
-    int expected1 = 0;
-    int expected2 = 365;
-    int result = rand() %365;
-    ASSERT_INTERVAL(expected1,expected2,result);
+	//Given
+	const int vklad_test = 9000;
+    const int day_test = -1;
+
+    // When
+    const int result = corect(vklad_test, day_test);
+
+    // Then
+    const int expected = 1;
+    ASSERT_EQUAL(expected, result);
 }
 
-CTEST(main2, main2_test)
+CTEST(logic_suite, corect_wrong_1)
 {
-    int expected1 = 10;
-    int expected2 = 1000000;
-    int result = rand() %100000;
-    ASSERT_INTERVAL(expected1,expected2,result);
+	//Given
+	const int vklad_test = 5000;
+    const int day_test = 5;
+
+    // When
+    const int result = corect(vklad_test, day_test);
+
+    // Then
+    const int expected = 1;
+    ASSERT_EQUAL(expected, result);
+}
+
+CTEST(logic_suite, corect_wrong_2)
+{
+	//Given
+	const int vklad_test = 10000;
+    const int day_test = 84;
+
+    // When
+    const int result = corect(vklad_test, day_test);
+
+    // Then
+    const int expected = 0;
+    ASSERT_EQUAL(expected, result);
+}
+
+CTEST(logic_suite, corect_wrong_3)
+{
+	//Given
+	const int vklad_test = 10000;
+    const int day_test = 456;
+
+    // When
+    const int result = corect(vklad_test, day_test);
+
+    // Then
+    const int expected = 1;
+    ASSERT_EQUAL(expected, result);
+}
+
+CTEST(logic_suite, corect_wrong_4)
+{
+	//Given
+	const int vklad_test = -9000;
+    const int day_test = 89;
+
+    // When
+    const int result = corect(vklad_test, day_test);
+
+    // Then
+    const int expected = 1;
+    ASSERT_EQUAL(expected, result);
 }
